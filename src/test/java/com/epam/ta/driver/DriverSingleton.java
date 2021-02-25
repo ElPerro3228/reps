@@ -30,7 +30,8 @@ public class DriverSingleton {
                     FirefoxOptions options=new FirefoxOptions();
                     options.setProfile(myprofile);
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver(options);
+                    //driver = new FirefoxDriver(options);
+                    driver = new FirefoxDriver();
                     break;
                 }
             }
