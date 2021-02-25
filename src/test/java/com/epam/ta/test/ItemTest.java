@@ -15,7 +15,7 @@ public class ItemTest extends CommonConditions{
 
     @BeforeMethod(alwaysRun = true)
     public void close(){
-        DriverSingleton.deleteAllCookies();
+        //DriverSingleton.deleteAllCookies();
     }
 
     @Test
