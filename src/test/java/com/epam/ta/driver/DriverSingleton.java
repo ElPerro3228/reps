@@ -25,6 +25,7 @@ public class DriverSingleton {
                     break;
                 }
                 default: {
+                    WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
                     break;
                 }
