@@ -1,6 +1,5 @@
 package com.epam.ta.page;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
