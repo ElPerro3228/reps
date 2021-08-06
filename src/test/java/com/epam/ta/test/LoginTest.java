@@ -12,18 +12,18 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoginTest extends CommonConditions{
+public class LoginTest extends CommonConditions {
     @Test
-    public void loginTest(){
-        User testUser=UserCreator.withEmptyPhoneNumber();
-        LoginPage loginPage=new LoginPage(driver)
+    public void loginTest() {
+        User testUser = UserCreator.withEmptyPhoneNumber();
+        LoginPage loginPage = new LoginPage(driver)
                 .openPage()
                 .inputUserEmail(testUser.getEmail())
                 .inputUserPassword(testUser.getPassword());
 
-        AccountPage accountPage=loginPage.clickSubmitButton();
+        AccountPage accountPage = loginPage.clickSubmitButton();
 
-        String currentUrl=accountPage.getCurrentUrl();
-        Assert.assertEquals(currentUrl,"https://www.walmart.com/account/?action=SignIn&rm=true");
+        String currentUrl = accountPage.getCurrentUrl();
+        Assert.assertEquals(currentUrl, "https://www.walmart.com/account/?action=SignIn&rm=true");
     }
 }

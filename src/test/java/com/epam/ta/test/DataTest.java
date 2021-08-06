@@ -13,24 +13,24 @@ import com.epam.ta.service.UserCreator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class DataTest extends CommonConditions{
+public class DataTest extends CommonConditions {
 
     @Test
-    public void removeAddressTest(){
-        DeliveryAdressesPage deliveryAdressesPage=new DeliveryAdressesPage(driver)
+    public void removeAddressTest() {
+        DeliveryAdressesPage deliveryAdressesPage = new DeliveryAdressesPage(driver)
                 .openPage()
                 .deleteAddresses();
     }
 
     @Test
-    public void addressAddTest(){
-        Address newAddress= AddressCreator.withAllProperty();
-        User testUser=UserCreator.withEmptyPhoneNumber();
+    public void addressAddTest() {
+        Address newAddress = AddressCreator.withAllProperty();
+        User testUser = UserCreator.withEmptyPhoneNumber();
 
-        AccountPage accountPage=new AccountPage(driver)
+        AccountPage accountPage = new AccountPage(driver)
                 .openPage();
 
-        DeliveryAdressesPage deliveryAdressesPage=accountPage.openDeliveryAdressesPage()
+        DeliveryAdressesPage deliveryAdressesPage = accountPage.openDeliveryAdressesPage()
                 .inputFirstName(newAddress.getFirstName())
                 .inputLastName(newAddress.getLastName())
                 .inputStreetAdress(newAddress.getStreetAddress())
@@ -44,9 +44,8 @@ public class DataTest extends CommonConditions{
     }
 
 
-
     @Test
-    public void checkCorrectAddToFavorite(){
+    public void checkCorrectAddToFavorite() {
         Item item = ItemCreator.withEmptyProductCount("first");
         String expectedCount = "1 item";
         ItemPage itemPage = new ItemPage(driver)
@@ -57,6 +56,6 @@ public class DataTest extends CommonConditions{
                 .openPage()
                 .getCurrentList();
 
-        Assert.assertEquals(favoritePage.getCountOfFavoriteItems(),expectedCount);
+        Assert.assertEquals(favoritePage.getCountOfFavoriteItems(), expectedCount);
     }
 }

@@ -14,11 +14,12 @@ public class DriverSingleton {
     private static WebDriver driver;
 
 
-    private DriverSingleton(){}
-    
- public static WebDriver getDriver(){
-        if (null == driver){
-            switch (System.getProperty("browser")){
+    private DriverSingleton() {
+    }
+
+    public static WebDriver getDriver() {
+        if (null == driver) {
+            switch (System.getProperty("browser")) {
                 case "chrome": {
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
@@ -35,11 +36,11 @@ public class DriverSingleton {
         return driver;
     }
 
-    public static void deleteAllCookies(){
+    public static void deleteAllCookies() {
         driver.manage().deleteAllCookies();
     }
 
-    public static void closeDriver(){
+    public static void closeDriver() {
         driver.quit();
         driver = null;
     }

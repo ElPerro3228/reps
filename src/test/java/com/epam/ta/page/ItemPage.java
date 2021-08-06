@@ -1,13 +1,12 @@
 package com.epam.ta.page;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ItemPage extends AbstractPageWithParameterizedUrl{
+public class ItemPage extends AbstractPageWithParameterizedUrl {
 
     @FindBy(xpath = "//button[@class='button spin-button prod-ProductCTA--primary button--primary']")
     private WebElement addItemToCartButton;
@@ -27,44 +26,43 @@ public class ItemPage extends AbstractPageWithParameterizedUrl{
     @FindBy(xpath = "//div[@class='hf-Bot']/a/span")
     private WebElement brandTitle;
 
-    public ItemPage(WebDriver driver){
+    public ItemPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     @Override
-    public ItemPage openPage(String urlPart){
-        driver.get("https://www.walmart.com/"+urlPart);
+    public ItemPage openPage(String urlPart) {
+        driver.get("https://www.walmart.com/" + urlPart);
         return this;
     }
 
-    public ItemPage addItemToCart()
-    {
+    public ItemPage addItemToCart() {
         waitWebElementLocatedBy(By.className("button-wrapper"));
         addItemToCartButton.click();
         waitWebElementLocatedBy(By.xpath("//button[@class='button button--ghost']"));
         return this;
     }
 
-    public ItemPage addToWishList(){
+    public ItemPage addToWishList() {
         addToWishListButton.click();
         return this;
     }
 
-    public String getItemPrice(){
+    public String getItemPrice() {
         return itemPrice.getText();
     }
 
-    public OrderPage goToOrderPage(){
+    public OrderPage goToOrderPage() {
         orderPageButton.click();
         return new OrderPage(driver);
     }
 
-    public String getItemTitle(){
+    public String getItemTitle() {
         return itemTitle.getText();
     }
 
-    public String getBrandTitle(){
+    public String getBrandTitle() {
         return brandTitle.getText();
     }
 }

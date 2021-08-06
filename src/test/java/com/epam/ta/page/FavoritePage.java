@@ -13,24 +13,24 @@ public class FavoritePage extends AbstractPageWithStaticUrl {
     @FindBy(xpath = "//article[@class='CountSorting separator width-full']/p")
     private WebElement countOfFavoriteItems;
 
-    public FavoritePage(WebDriver driver){
+    public FavoritePage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     @Override
-    public FavoritePage openPage(){
+    public FavoritePage openPage() {
         driver.get("https://www.walmart.com/lists");
         return this;
     }
 
-    public FavoritePage getCurrentList(){
+    public FavoritePage getCurrentList() {
         currentListButton.click();
         return this;
     }
 
-    public String getCountOfFavoriteItems(){
-        waitUntilFieldIsChanged(countOfFavoriteItems,"0 items");
+    public String getCountOfFavoriteItems() {
+        waitUntilFieldIsChanged(countOfFavoriteItems, "0 items");
         return countOfFavoriteItems.getText();
     }
 }

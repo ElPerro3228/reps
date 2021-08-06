@@ -44,77 +44,77 @@ public class DeliveryAdressesPage extends AbstractPageWithStaticUrl {
     @FindBy(xpath = "//form[@id='sign-in-form']/button")
     private WebElement passwordVerificationButton;
 
-    public DeliveryAdressesPage(WebDriver driver){
+    public DeliveryAdressesPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     @Override
-    public DeliveryAdressesPage openPage(){
+    public DeliveryAdressesPage openPage() {
         driver.get("https://www.walmart.com/account/deliveryaddresses");
         return this;
     }
 
-    public DeliveryAdressesPage inputFirstName(String firstName){
+    public DeliveryAdressesPage inputFirstName(String firstName) {
         waitWebElementLocatedBy(By.xpath("//div[@class='Grid Grid--gutters edit-form-fields-v2 text-left']"));
         firstNameField.sendKeys(firstName);
         return this;
     }
 
-    public DeliveryAdressesPage inputLastName(String lastName){
+    public DeliveryAdressesPage inputLastName(String lastName) {
         lastNameField.sendKeys(lastName);
         return this;
     }
 
-    public DeliveryAdressesPage inputPhoneNumber(String phoneNumber){
+    public DeliveryAdressesPage inputPhoneNumber(String phoneNumber) {
         phoneNumberField.sendKeys(phoneNumber);
         return this;
     }
 
-    public DeliveryAdressesPage inputStreetAdress(String streetAdress){
+    public DeliveryAdressesPage inputStreetAdress(String streetAdress) {
         streetAdressField.sendKeys(streetAdress);
         return this;
     }
 
-    public DeliveryAdressesPage inputCity(String city){
+    public DeliveryAdressesPage inputCity(String city) {
         cityField.sendKeys(city);
         return this;
     }
 
-    public DeliveryAdressesPage selectState(String stateAbb){
-        Select select=new Select(stateSelect);
+    public DeliveryAdressesPage selectState(String stateAbb) {
+        Select select = new Select(stateSelect);
         select.selectByValue(stateAbb);
         return this;
     }
 
-    public DeliveryAdressesPage inputZipCode(String zipCode){
+    public DeliveryAdressesPage inputZipCode(String zipCode) {
         zipCodeField.sendKeys(zipCode);
         return this;
     }
 
-    public DeliveryAdressesPage saveAdress(){
+    public DeliveryAdressesPage saveAdress() {
         saveButton.click();
         return this;
     }
 
-    public DeliveryAdressesPage saveAdressAccept(){
+    public DeliveryAdressesPage saveAdressAccept() {
         waitWebElementLocatedBy(By.xpath("//div[@class='unmatched-address']"));
         saveAccept.click();
         return this;
     }
 
-    public DeliveryAdressesPage passwordVerification(String password){
+    public DeliveryAdressesPage passwordVerification(String password) {
         waitWebElementLocatedBy(By.xpath("//div[@id='sign-in-widget']"));
         passwordVerificationField.sendKeys(password);
         passwordVerificationButton.click();
         return this;
     }
 
-    public DeliveryAdressesPage deleteAddresses(){
-        List<WebElement> deleteButtons= driver.findElements( By.xpath("//button[@class='button delete-button button--link']"));
-        for (WebElement deleteButton:deleteButtons) {
+    public DeliveryAdressesPage deleteAddresses() {
+        List<WebElement> deleteButtons = driver.findElements(By.xpath("//button[@class='button delete-button button--link']"));
+        for (WebElement deleteButton : deleteButtons) {
             deleteButton.click();
-            WebElement confirmDelete=driver.findElement(By.xpath("//button[@class='button confirm-remove-button s-margin-top button--small button--primary']"));
+            WebElement confirmDelete = driver.findElement(By.xpath("//button[@class='button confirm-remove-button s-margin-top button--small button--primary']"));
             confirmDelete.click();
         }
         return this;

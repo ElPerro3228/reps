@@ -11,15 +11,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
-public class ItemTest extends CommonConditions{
+public class ItemTest extends CommonConditions {
 
     @BeforeMethod(alwaysRun = true)
-    public void close(){
+    public void close() {
         DriverSingleton.deleteAllCookies();
     }
 
     @Test
-    public void addToOrder(){
+    public void addToOrder() {
         Item item = ItemCreator.withEmptyProductCount("second");
         ItemPage itemPage = new ItemPage(driver)
                 .openPage(item.getItemUrl());
@@ -31,40 +31,40 @@ public class ItemTest extends CommonConditions{
         OrderPage orderPage = new OrderPage(driver)
                 .openPage();
 
-        Assert.assertEquals(expectedPrice,orderPage.getOrderPrice());
+        Assert.assertEquals(expectedPrice, orderPage.getOrderPrice());
     }
 
     @Test
-    public void addTwoDifferentItems(){
-        Item firstItem=ItemCreator.withEmptyProductCount("first");
-        Item secondItem=ItemCreator.withEmptyProductCount("second");
+    public void addTwoDifferentItems() {
+        Item firstItem = ItemCreator.withEmptyProductCount("first");
+        Item secondItem = ItemCreator.withEmptyProductCount("second");
 
-        ItemPage firstItemPage=new ItemPage(driver)
+        ItemPage firstItemPage = new ItemPage(driver)
                 .openPage(firstItem.getItemUrl())
                 .addItemToCart();
-        float firstItemPrice=StringConverter.stringPriceToFloat(firstItemPage.getItemPrice());
+        float firstItemPrice = StringConverter.stringPriceToFloat(firstItemPage.getItemPrice());
 
-        ItemPage secondItemPage=new ItemPage(driver)
+        ItemPage secondItemPage = new ItemPage(driver)
                 .openPage(secondItem.getItemUrl())
                 .addItemToCart();
-        float secondItemPrice=StringConverter.stringPriceToFloat(secondItemPage.getItemPrice());
+        float secondItemPrice = StringConverter.stringPriceToFloat(secondItemPage.getItemPrice());
 
-        OrderPage orderPage=new OrderPage(driver)
+        OrderPage orderPage = new OrderPage(driver)
                 .openPage();
-        float orderPrice=StringConverter.stringPriceToFloat(orderPage.getOrderPrice());
+        float orderPrice = StringConverter.stringPriceToFloat(orderPage.getOrderPrice());
 
-        float expectedOrderPrice=firstItemPrice+secondItemPrice;
+        float expectedOrderPrice = firstItemPrice + secondItemPrice;
 
         //Assert.assertEquals(orderPrice,expectedOrderPrice);
     }
 
-   @Test
-    public void addTwoSimilarItems(){
-        Item item=ItemCreator.withEmptyProductCount("first");
+    @Test
+    public void addTwoSimilarItems() {
+        Item item = ItemCreator.withEmptyProductCount("first");
 
-        int expectedItemCount=2;
+        int expectedItemCount = 2;
 
-        int itemCount=new ItemPage(driver)
+        int itemCount = new ItemPage(driver)
                 .openPage(item.getItemUrl())
                 .addItemToCart()
                 .openPage(item.getItemUrl())
@@ -72,38 +72,38 @@ public class ItemTest extends CommonConditions{
                 .goToOrderPage()
                 .getItemCount();
 
-        Assert.assertEquals(expectedItemCount,itemCount);
+        Assert.assertEquals(expectedItemCount, itemCount);
     }
 
     @Test
-    public void deleteAddedProduct(){
-        Item item=ItemCreator.withEmptyProductCount("first");
+    public void deleteAddedProduct() {
+        Item item = ItemCreator.withEmptyProductCount("first");
 
-        String  expectedPrice="$0.00";
+        String expectedPrice = "$0.00";
 
-        String orderPrice=new ItemPage(driver)
+        String orderPrice = new ItemPage(driver)
                 .openPage(item.getItemUrl())
                 .addItemToCart()
                 .goToOrderPage()
                 .removeItem()
                 .getOrderPrice();
 
-        Assert.assertEquals(orderPrice,expectedPrice);
+        Assert.assertEquals(orderPrice, expectedPrice);
     }
 
-   @Test
-    public void changeItemQuantity(){
-        Item item=ItemCreator.withEmptyProductCount("first");
+    @Test
+    public void changeItemQuantity() {
+        Item item = ItemCreator.withEmptyProductCount("first");
 
-        int expectedCount=3;
+        int expectedCount = 3;
 
-        int itemCount=new ItemPage(driver)
+        int itemCount = new ItemPage(driver)
                 .openPage(item.getItemUrl())
                 .addItemToCart()
                 .goToOrderPage()
                 .setQuantity(Integer.toString(expectedCount))
                 .getItemCount();
 
-        Assert.assertEquals(itemCount,expectedCount);
+        Assert.assertEquals(itemCount, expectedCount);
     }
 }

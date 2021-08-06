@@ -14,15 +14,13 @@ public class CommonConditions {
 
 
     @BeforeMethod()
-    public void setUp()
-    {
+    public void setUp() {
         driver = DriverSingleton.getDriver();
     }
 
 
     @AfterMethod(alwaysRun = true)
-    public void stopBrowser()
-    {
+    public void stopBrowser() {
         DriverSingleton.closeDriver();
     }
 }

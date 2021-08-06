@@ -7,11 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage extends AbstractPageWithStaticUrl{
+public class LoginPage extends AbstractPageWithStaticUrl {
     private static final String PAGE_URL = "https://www.walmart.com/account/login";
 
     @FindBy(xpath = "//input[@id='email']")
-    private  WebElement inputEmail;
+    private WebElement inputEmail;
 
     @FindBy(xpath = "//*[@id='password']")
     private WebElement inputPassword;
@@ -19,30 +19,30 @@ public class LoginPage extends AbstractPageWithStaticUrl{
     @FindBy(xpath = "//*[@type='submit']")
     private WebElement buttonSubmit;
 
-    public LoginPage(WebDriver driver){
+    public LoginPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(this.driver,this);
+        PageFactory.initElements(this.driver, this);
     }
 
     @Override
-    public  LoginPage openPage(){
+    public LoginPage openPage() {
         driver.navigate().to(PAGE_URL);
         return this;
     }
 
-    public LoginPage inputUserEmail(String email){
+    public LoginPage inputUserEmail(String email) {
         inputEmail.sendKeys(email);
         return this;
     }
 
-    public LoginPage inputUserPassword(String password){
+    public LoginPage inputUserPassword(String password) {
         inputPassword.sendKeys(password);
         return this;
     }
 
-    public AccountPage clickSubmitButton(){
+    public AccountPage clickSubmitButton() {
         buttonSubmit.click();
-        new WebDriverWait(driver,10).until(ExpectedConditions.urlContains("https://www.walmart.com/account/?action=SignIn&rm=true"));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.urlContains("https://www.walmart.com/account/?action=SignIn&rm=true"));
         return new AccountPage(driver);
     }
 }
