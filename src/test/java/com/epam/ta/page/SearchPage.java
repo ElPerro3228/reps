@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
-public class SearchPage extends AbstractPageWithStaticUrl{
+public class SearchPage extends AbstractPageWithStaticUrl {
 
     @FindBy(xpath = "//input[@id='global-search-input']")
     private WebElement searchInputField;
@@ -25,40 +25,40 @@ public class SearchPage extends AbstractPageWithStaticUrl{
     @FindBy(xpath = "//div[@id='searchProductResult']/ul")
     private WebElement searchItemList;
 
-    public SearchPage(WebDriver driver){
+    public SearchPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     @Override
-    public SearchPage openPage(){
+    public SearchPage openPage() {
         driver.get("https://www.walmart.com/search");
         return this;
     }
 
-    public SearchPage searchByText(String searchText){
+    public SearchPage searchByText(String searchText) {
         searchInputField.sendKeys(searchText);
         searchButton.click();
         return this;
     }
 
-    public ItemPage goToItemPage(){
-        List<WebElement> list=driver.findElements(By.xpath("//div[@id='searchProductResult']/ul/li"));
+    public ItemPage goToItemPage() {
+        List<WebElement> list = driver.findElements(By.xpath("//div[@id='searchProductResult']/ul/li"));
         list.get(1).click();
         return new ItemPage(driver);
     }
 
-    public SearchPage filterByBrand(String brand){
-        WebElement brandCheckBox=driver.findElement(By.xpath("//label[starts-with(@for,'"+brand+"')]/input"));
+    public SearchPage filterByBrand(String brand) {
+        WebElement brandCheckBox = driver.findElement(By.xpath("//label[starts-with(@for,'" + brand + "')]/input"));
         brandCheckBox.click();
         return this;
     }
 
-    public boolean checkBrandFilter(String brand){
-        boolean result=false;
+    public boolean checkBrandFilter(String brand) {
+        boolean result = false;
         List<WebElement> list = driver.findElements(By.xpath("//div[@class='applied-filters-container']/div[2]/button"));
-        for (WebElement element:list) {
-            if((element.getText()).contains(brand)){
+        for (WebElement element : list) {
+            if ((element.getText()).contains(brand)) {
                 result = true;
                 break;
             }

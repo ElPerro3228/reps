@@ -6,15 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CheckOutPage extends AbstractPageWithStaticUrl{
+public class CheckOutPage extends AbstractPageWithStaticUrl {
 
-    public CheckOutPage(WebDriver driver){
+    public CheckOutPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     @Override
-    public CheckOutPage openPage(){
+    public CheckOutPage openPage() {
         driver.get("https://www.walmart.com/checkout/");
         return this;
     }
